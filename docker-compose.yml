@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  backup:
+    build: .
+    volumes:
+      - mydata:/volume
+    entrypoint: ["./backup.sh", "mydata", "/app/backup.tar.gz"]
+
+  restore:
+    build: .
+    volumes:
+      - mydata:/volume
+    entrypoint: ["./restore.sh", "/app/backup.tar.gz"]
+
+volumes:
+  mydata:
